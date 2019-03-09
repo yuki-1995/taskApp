@@ -239,9 +239,9 @@ function isLogin(){
 // DB接続関数
 function dbConnect(){
   // DBへ接続準備
-  $dbs = 'mysql:dbname=taskManagementApp;host=localhost;charset=utf8';
-  $user = 'root';
-  $password = 'root';
+  $dbs = 'mysql:dbname=task;host=localhost;charset=utf8';
+  $user = '';
+  $password = '';
   $options = array(
     // SQL実行失敗時にはエラーコードのみ設定
     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
