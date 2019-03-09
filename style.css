@@ -1,0 +1,581 @@
+@charset "UTF-8";
+
+body{
+  margin:0;
+  padding:0;
+  font-family: "Avenir Next";
+}
+
+li{
+  list-style: none;
+}
+
+
+/* 全ページ共通 */
+.site-width {
+  margin: 0 auto;
+  width: 980px;
+}
+
+.form .title {
+  margin-bottom: 40px;
+  text-align: center;
+}
+.form .area-msg{
+  padding: 0 0 15px 0;
+  color: red;
+}
+
+.page-back{
+  margin-left: 235px;
+  margin-top:20px;
+}
+
+/* マイページ専用 */
+.page-mypage > .site-width{
+  margin: 0 auto;
+  width: 980px;
+  height:650px;
+}
+
+/* タスク詳細専用 */
+.task-detail1 > .site-width{
+  margin:0 auto;
+  width:650px;
+}
+
+/* メインページ */
+.page-main > .site-width{
+  margin:0 auto;
+  width:980px;
+  height:650px;
+}
+
+/* ヘッダー */
+header{
+  width:100%;
+  height:80px;
+  background-color: rgb(20, 100, 255);
+}
+
+/* フッター */
+footer{
+  background-color: rgb(20, 100, 255);
+  color: #fff;
+  height: 70px;
+  line-height:70px;
+  text-align:center;
+}
+
+
+/* ヘッダー内 */
+header h1{
+  float:left;
+  padding-left:65px;
+  font-size:40px;
+  margin:0;
+  line-height: 80px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+header h1 a{
+  color:rgb(255, 255, 255);
+  text-decoration: none;
+  padding:15px;
+}
+
+header h1 a:hover{
+  background-color: white;
+  color: rgb(20,100,255);
+  border-radius: 100px;
+}
+
+
+
+/* ヘッダー内 navタグ */
+#top-nav {
+  float: right;
+  width: 500px;
+  height: 80px;
+}
+
+nav a {
+  padding: 10px 35px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+nav a:hover {
+  background-color: white;
+  color: rgb(20, 100, 255);
+  border-radius: 100px;
+}
+
+#top-nav ul {
+  width: 500px;
+  height: 80px;
+  list-style: none;
+  line-height: 80px;
+  margin:0 auto;
+}
+
+#top-nav ul li {
+  float: left;
+}
+
+
+
+/* 全ページ共通 メイン */
+#main {
+  padding: 100px 80px;
+}
+
+
+
+/* index.php メインの中 */
+.copy-container {
+  text-align: center;
+  padding:30px;
+}
+
+.copy-container h1 {
+  font-size: 140px;
+  -webkit-transition: all 2s;
+  -webkit-transform: translate(0, 0);
+  opacity: 1;
+  padding:50px;
+  margin-bottom:30px;
+}
+
+.copy-container h1.move {
+  -webkit-transform: translate(-10px, 0);
+  opacity: 0;
+}
+
+
+.copy-container h2 {
+  font-size: 70px;
+  -webkit-transition: all 9s;
+  -webkit-transform: translate(0, 0);
+  opacity: 1;
+  padding:20px;
+}
+
+.copy-container h2.move {
+  -webkit-transform: translate(-10px, 0);
+  opacity: 0;
+}
+
+.contents {
+  height: 300px;
+  margin-top: 100px;
+}
+
+.section-title {
+  border-top: 2px solid #dee7ec;
+  font-size: 28px;
+  padding-top: 25px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+
+
+/* トップページ 登録ボタン */
+.sign-btn-area{
+  width:500px;
+  padding:40px;
+  margin:0 auto;
+}
+
+
+.sign-btn{
+  text-align: center;
+  padding:50px;
+}
+
+.sign-btn a{
+  padding:50px;
+  margin-top: 20px;
+  background-color:rgb(20, 100, 255);
+  color:white;
+  border-radius: 40px;
+  text-decoration: none;
+}
+
+
+
+/* signup.php フォーム */
+
+.form{
+    margin: 0 auto;
+    padding:30px;
+    width: 450px;
+    border: 5px solid #f1f1f1;
+}
+
+.profEdit .form , .passEdit .form{
+    margin-top:70px;
+    margin-left: 250px;
+    padding:30px;
+    width: 450px;
+    border: 5px solid #f1f1f1;
+}
+.form h2{
+  width:450px;
+  text-align: center;
+}
+
+.profEdit .form h2, .passEdit .form h2{
+  width:430px;
+}
+
+.form .area-msg{
+  padding: 0 0 15px 0;
+  color: red;
+}
+
+
+.btn-container{
+  text-align: center;
+}
+
+.btn-mid{
+  background-color:rgb(20, 100, 255);
+  color:white;
+  border-radius: 10px;
+}
+
+
+
+/* profEdit フォーム */
+
+label{
+  display: block;
+}
+label.err input, label.err select{
+  background: #f7dcd9;
+}
+
+.form .btn-container {
+  overflow: hidden;
+  /* 消すかも↓ */
+  margin-top:30px;
+
+}
+
+
+.form .area-drop{
+  margin-bottom: 15px;
+  width: 100%;
+  height: 140px;
+  background-color: #f6f5f4;
+  color: #ccc;
+  text-align: center;
+  line-height: 150px;
+  position: relative;
+  box-sizing: border-box;
+}
+.form .input-file{
+  opacity:0;
+  width:100%;
+  height:140px;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index: 2; /* 必ずz-indexをつけないと登録画像を変更する際にドラッグ＆ドロップできなくなる*/
+}
+.form .prev-img{
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.form .imgDrop-container{
+  width: 33.333%;
+  float: left;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+
+/* task.html,login.html フォーム */
+
+
+/* 全ページ共通 input textarea */
+
+input, textarea {
+  width:410px;
+  margin-top:10px;
+  margin-bottom:30px;
+  padding:20px;
+  font-size:18px;
+  border:1px solid #dee7ec;
+}
+
+input[type="submit"] {
+  margin: 15px 0;
+  padding: 15px 30px;
+  width: 170px;
+  border: none;
+  background: rgb(20, 100, 255);
+  color: white;
+  font-size: 14px;
+}
+
+select{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+    height: 60px;
+    border: none;
+    font-size: 18px;
+}
+
+.profEdit select{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+    height: 75px;
+    border: none;
+    font-size: 20px;
+}
+
+
+
+
+/* 全ページ共通 サイドバー */
+#sidebar {
+  float: left;
+  box-sizing: border-box;
+  padding: 15px;
+  min-height: 400px;
+  width: 200px;
+  background: #f6f5f4;
+  margin-right:30px;
+}
+
+#sidebar .title {
+  text-align: left;
+  font-size: 14px;
+}
+
+.page-logined #sidebar{
+  margin: 70px 0 0 20px;
+  border-radius: 30px;
+}
+.page-logined #sidebar > a{
+  display: block;
+  margin-top:15px;
+  margin-bottom: 25px;
+  text-decoration: none;
+  padding:15px;
+  text-align: center;
+  background-color: rgb(20, 100, 255);
+  color:white;
+  border-radius: 70px;
+}
+
+.page-logined #sidebar > a:hover{
+  background-color: rgb(29, 113, 255);
+  text-decoration: underline;
+}
+
+
+
+#sidebar .selectbox {
+  position: relative;
+}
+
+#sidebar select {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid rgb(140, 140, 140);
+  border-radius: 0;
+  font-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+#sidebar .icn_select:after {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #333;
+  border-right: 7px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 7px solid transparent;
+  content: "";
+}
+
+
+.search-title {
+  overflow: hidden;
+  margin-bottom: 30px;
+  padding: 5px 20px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.search-left {
+  float: left;
+}
+
+.search-right {
+  float: right;
+}
+
+.search-title .total-num {
+  padding-right: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+
+/* パネル タスク一覧 */
+.panel-list {
+  overflow: hidden;
+  margin-right: -15px;
+  padding-left:20px;
+  margin-top:-7px;
+}
+
+.panel-list > .panel {
+  float: left;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  width: 100%;
+  color: #333;
+  text-decoration: none;
+  line-height: 1.2em;
+  /* background-color: #f6f5f4; */
+  border-radius: 20px;
+  border:3px solid rgb(20, 100, 255);
+}
+
+.panel-list > .panel:hover{
+  background-color:rgb(20, 100, 255);
+  color:white;
+}
+
+.panel-body{
+  float: left;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.panel-body p{
+  float:left;
+  font-size:25px;
+  width:95%;
+  line-height:1.3;
+  text-align: center;
+}
+
+
+/* ページネーション */
+
+.pagination {
+  position: relative;
+  overflow: hidden;
+}
+
+.pagination-list {
+  position: relative;
+  left: 50%;
+  float: left;
+  padding-left: 0;
+  list-style: none;
+}
+
+.pagination .list-item {
+  position: relative;
+  left: -50%;
+  float: left;
+  margin-right: 5px;
+}
+
+.pagination .list-item:last-child {
+  margin-right: 0;
+}
+
+.pagination .list-item a {
+  display: block;
+  padding: 5px 10px;
+  background: #eee;
+  color: black;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.pagination .list-item.active a {
+  background: rgb(20, 100, 255);
+  color: white;
+}
+
+.pagination .list-item a:hover {
+  background: rgb(20, 100, 255);
+  color: white;
+}
+
+
+
+/* タスク詳細  */
+
+.task-detail1 .title{
+  font-size:25px;
+  padding:10px 0;
+  line-height: 50px;
+}
+
+.task-detail{
+  height:500px;
+}
+
+
+.task-detail p{
+  background-color:#f6f5f4;
+  line-height:33px;
+  padding:15px 35px 25px;
+  margin:30px 0;
+  height:450px;
+}
+
+.badge{
+  background:rgb(20, 100, 255);
+  color:white;
+  border-radius: 5px;
+  padding:2px;
+  margin-right:10px;
+  margin-left:5px;
+}
+
+.task-complete{
+  line-height: 40px;
+}
+
+
+/* セッション格納メッセージ */
+.msg-slide p {
+  position: fixed;
+  width: 100%;
+  margin: 0;
+  height: 80px;
+  background: rgba(122,206,230,0.6);
+  text-align: center;
+  font-size: 16px;
+  line-height: 80px;
+}
