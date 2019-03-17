@@ -23,7 +23,7 @@ if(!empty($_SESSION['login_date'])){
     $_SESSION['login_date'] = time();
 
     //現在実行中のスクリプトファイル名がlogin.phpの場合
-    //$_SERVER['PHP_SELF']はドメインからのパスを返すため、今回の場合「/Portfolio/login.php」が返ってくるので、
+    //$_SERVER['PHP_SELF']はドメインからのパスを返すため、今回の場合「/taskApp/login.php」が返ってくるので、
     //さらにbasename関数を使うことでファイル名だけを取り出せる
     if(basename($_SERVER['PHP_SELF']) === 'login.php'){
       debug('タスク登録ページへ遷移します');

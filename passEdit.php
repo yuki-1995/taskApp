@@ -79,7 +79,7 @@ if(!empty($_POST)){
 
           // メール送信
           $username = ($userData['username']) ? $userData['username'] : '名無し';
-          $from = 'kohojoin15@gmail.com';
+          $from = 'gmail.com';
           $to = $userData['email'];
           $subject = 'パスワード変更通知 | Hello task';
           $comment = <<<EOT
