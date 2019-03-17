@@ -159,7 +159,6 @@ require('header.php');
             <div class="btn-container">
               <input type="submit" class="btn btn-mid" value="ログイン">
             </div>
-            パスワードを忘れた方は<a href="passRemindSend.php">コチラ</a>
          </form>
        </div>
 

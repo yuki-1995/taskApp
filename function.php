@@ -4,9 +4,9 @@
 //================================
 
 // ログを取るか
-ini_set('log_errors','on');
+// ini_set('log_errors','on');
 // ログの出力先ファイル
-ini_set('error_log','php.log');
+// ini_set('error_log','php.log');
 
 
 //================================
@@ -14,7 +14,7 @@ ini_set('error_log','php.log');
 //================================
 
 // デバックフラグ
-$debug_flg = true;
+$debug_flg = false;
 
 // デバックログ関数
 function debug($str){
@@ -71,8 +71,8 @@ define('MSG08', 'そのEmailは既に登録されています');
 define('MSG09', 'メールアドレスまたはパスワードが違います');
 define('MSG10', '電話番号の形式が違います');
 define('MSG11', '郵便番号の形式が違います');
-define('MSG12', '古いパスワードが違います');
-define('MSG13', '古いパスワードと同じです');
+define('MSG12', '現在のパスワードが違います');
+define('MSG13', '現在のパスワードと同じです');
 define('MSG14', '文字で入力してください');
 define('MSG15', '正しくありません');
 define('MSG16', '有効期限が切れています');
@@ -80,7 +80,7 @@ define('MSG17', '半角数字のみご利用いただけます');
 define('SUC01', 'パスワードを変更しました');
 define('SUC02', 'プロフィールを変更しました');
 define('SUC03', '');
-define('SUC04', '登録しました');
+define('SUC04', 'ユーザー登録しました');
 define('SUC05', 'タスク完了！');
 define('SUC06', 'ログインしました');
 
@@ -170,13 +170,6 @@ function validHalf($str,$key){
   }
 }
 
-// バリデーション関数
-function validSelect($str, $key){
-  if(!preg_match("/^[0-9]+$/", $str)){
-    global $err_msg;
-    $err_msg[$key] = MSG15;
-  }
-}
 
 // バリデーション関数 (TEL形式チェック)
 function validTel($str,$key){
@@ -460,16 +453,6 @@ function getTasksList($currentMinNum = 1, $group, $span = 5){
     // ページング用のSQL文作成
     $sql = 'SELECT * FROM tasks';
     if(!empty($group)) $sql .= ' WHERE group_id = '.$group;
-    // if(!empty($sort)){
-    //   switch($sort){
-    //     case 1:
-    //       $sql .= ' ORDER BY price ASC';
-    //       break;
-    //     case 2:
-    //       $sql .= ' ORDER BY price DESC';
-    //       break;
-    //   }
-    // }
     $sql .= ' LIMIT '.$span.' OFFSET '.$currentMinNum;
     $data = array();
     debug('SQL：'.$sql);
@@ -534,77 +517,77 @@ function getMyTasksList($currentMinNum = 1, $u_id, $span =5){
 //================================
 // メール送信
 //================================
-function sendMail($from,$to,$subject,$comment){
-  if(!empty($to) && !empty($subject) && !empty($comment)){
-    // 文字化けしないように設定
-    mb_language("japanese");
-    mb_internal_encoding("UTF-8");
+// function sendMail($from,$to,$subject,$comment){
+//   if(!empty($to) && !empty($subject) && !empty($comment)){
+//     // 文字化けしないように設定
+//     mb_language("japanese");
+//     mb_internal_encoding("UTF-8");
+//
+//     // メールを送信
+//     $result = mb_send_mail($to,$subject,$comment,"From:".$from);
+//     // 送信結果を判定
+//     if($result){
+//       debug('メールを送信しました');
+//     }else{
+//       debug('【エラー発生】メールの送信に失敗しました');
+//     }
+//   }
+// }
 
-    // メールを送信
-    $result = mb_send_mail($to,$subject,$comment,"From:".$from);
-    // 送信結果を判定
-    if($result){
-      debug('メールを送信しました');
-    }else{
-      debug('【エラー発生】メールの送信に失敗しました');
-    }
-  }
-}
 
-
-// 画像処理
-function uploadImg($file, $key){
-  debug('画像アップロード処理開始');
-  debug('FILE情報：'.print_r($file,true));
-
-  if (isset($file['error']) && is_int($file['error'])) {
-    try {
-      // バリデーション
-      // $file['error'] の値を確認。配列内には「UPLOAD_ERR_OK」などの定数が入っている。
-      //「UPLOAD_ERR_OK」などの定数はphpでファイルアップロード時に自動的に定義される。定数には値として0や1などの数値が入っている。
-      switch ($file['error']) {
-          case UPLOAD_ERR_OK: // OK
-              break;
-          case UPLOAD_ERR_NO_FILE:   // ファイル未選択の場合
-              throw new RuntimeException('ファイルが選択されていません');
-          case UPLOAD_ERR_INI_SIZE:  // php.ini定義の最大サイズが超過した場合
-          case UPLOAD_ERR_FORM_SIZE: // フォーム定義の最大サイズ超過した場合
-              throw new RuntimeException('ファイルサイズが大きすぎます');
-          default: // その他の場合
-              throw new RuntimeException('その他のエラーが発生しました');
-      }
-
-      // $file['mime']の値はブラウザ側で偽装可能なので、MIMEタイプを自前でチェックする
-      // exif_imagetype関数は「IMAGETYPE_GIF」「IMAGETYPE_JPEG」などの定数を返す
-      $type = @exif_imagetype($file['tmp_name']);
-      if (!in_array($type, [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) { // 第三引数にはtrueを設定すると厳密にチェックしてくれるので必ずつける
-          throw new RuntimeException('画像形式が未対応です');
-      }
-
-      // ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、ファイルを保存する
-      // ハッシュ化しておかないとアップロードされたファイル名そのままで保存してしまうと同じファイル名がアップロードされる可能性があり、
-      // DBにパスを保存した場合、どっちの画像のパスなのか判断つかなくなってしまう
-      // image_type_to_extension関数はファイルの拡張子を取得するもの
-      $path = 'uploads/'.sha1_file($file['tmp_name']).image_type_to_extension($type);
-      if (!move_uploaded_file($file['tmp_name'], $path)) { //ファイルを移動する
-          throw new RuntimeException('ファイル保存時にエラーが発生しました');
-      }
-      // 保存したファイルパスのパーミッション（権限）を変更する
-      chmod($path, 0644);
-
-      debug('ファイルは正常にアップロードされました');
-      debug('ファイルパス：'.$path);
-      return $path;
-
-    } catch (RuntimeException $e) {
-
-      debug($e->getMessage());
-      global $err_msg;
-      $err_msg[$key] = $e->getMessage();
-
-    }
-  }
-}
+// // 画像処理
+// function uploadImg($file, $key){
+//   debug('画像アップロード処理開始');
+//   debug('FILE情報：'.print_r($file,true));
+//
+//   if (isset($file['error']) && is_int($file['error'])) {
+//     try {
+//       // バリデーション
+//       // $file['error'] の値を確認。配列内には「UPLOAD_ERR_OK」などの定数が入っている。
+//       //「UPLOAD_ERR_OK」などの定数はphpでファイルアップロード時に自動的に定義される。定数には値として0や1などの数値が入っている。
+//       switch ($file['error']) {
+//           case UPLOAD_ERR_OK: // OK
+//               break;
+//           case UPLOAD_ERR_NO_FILE:   // ファイル未選択の場合
+//               throw new RuntimeException('ファイルが選択されていません');
+//           case UPLOAD_ERR_INI_SIZE:  // php.ini定義の最大サイズが超過した場合
+//           case UPLOAD_ERR_FORM_SIZE: // フォーム定義の最大サイズ超過した場合
+//               throw new RuntimeException('ファイルサイズが大きすぎます');
+//           default: // その他の場合
+//               throw new RuntimeException('その他のエラーが発生しました');
+//       }
+//
+//       // $file['mime']の値はブラウザ側で偽装可能なので、MIMEタイプを自前でチェックする
+//       // exif_imagetype関数は「IMAGETYPE_GIF」「IMAGETYPE_JPEG」などの定数を返す
+//       $type = @exif_imagetype($file['tmp_name']);
+//       if (!in_array($type, [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) { // 第三引数にはtrueを設定すると厳密にチェックしてくれるので必ずつける
+//           throw new RuntimeException('画像形式が未対応です');
+//       }
+//
+//       // ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、ファイルを保存する
+//       // ハッシュ化しておかないとアップロードされたファイル名そのままで保存してしまうと同じファイル名がアップロードされる可能性があり、
+//       // DBにパスを保存した場合、どっちの画像のパスなのか判断つかなくなってしまう
+//       // image_type_to_extension関数はファイルの拡張子を取得するもの
+//       $path = 'uploads/'.sha1_file($file['tmp_name']).image_type_to_extension($type);
+//       if (!move_uploaded_file($file['tmp_name'], $path)) { //ファイルを移動する
+//           throw new RuntimeException('ファイル保存時にエラーが発生しました');
+//       }
+//       // 保存したファイルパスのパーミッション（権限）を変更する
+//       chmod($path, 0644);
+//
+//       debug('ファイルは正常にアップロードされました');
+//       debug('ファイルパス：'.$path);
+//       return $path;
+//
+//     } catch (RuntimeException $e) {
+//
+//       debug($e->getMessage());
+//       global $err_msg;
+//       $err_msg[$key] = $e->getMessage();
+//
+//     }
+//   }
+// }
 
 //sessionを１回だけ取得できる
 function getSessionFlash($key){

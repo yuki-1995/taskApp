@@ -13,8 +13,8 @@ require('header.php');
     <section id="main">
       <div class="copy-container">
         <h1>Hello taskは..</h1>
-        <h2>「 毎日のタスク管理を簡単に 」を</h2>
-        <h2>実現したアプリケーションです</h2>
+        <h2>Webアプリ開発チームのための</h2>
+        <h2>タスク管理アプリです</h2>
       </div>
 
       <div class="contents">
