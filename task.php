@@ -19,8 +19,6 @@ require('auth.php');
 $t_id = (!empty($_GET['t_id'])) ? $_GET['t_id'] : '';
 // DBから商品データを取得
 $dbFormData = (!empty($t_id)) ? getTasks($_SESSION['user_id'], $t_id) : '';
-// 新規登録画面か編集画面か判別用フラグ
-$edit_flg = (empty($dbFormData)) ? false : true;
 // DBからチームデータを取得
 $dbGroupData = getGroup();
 debug('タスクID：'.$t_id);
@@ -104,7 +102,7 @@ if(!empty($_POST)){
 
       // クエリ成功の場合
       if($stmt){
-        $_SESSION['msg_success'] = SUC04;
+        $_SESSION['msg_success'] = SUC03;
         debug('マイページへ遷移します');
         header("Location:mypage.php");
       }
@@ -120,7 +118,7 @@ debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
 
 <?php
-$siteTitle = (!$edit_flg) ? 'タスクを登録する' : 'タスクを編集する';
+$siteTitle = 'タスクを登録する';
 require('head.php');
 ?>
 
@@ -134,11 +132,9 @@ require('head.php');
 
       <section id="main" class="site-width">
 
-        <!-- <h1>タスクを登録するorタスクを編集する</h1> -->
-
         <div class="form-container">
           <form action="" method="post" class="form">
-            <h2 class="title"><?php echo (!$edit_flg) ? 'タスクを登録する' : 'タスクを編集する'; ?></h1>
+            <h2 class="title"><?php echo $siteTitle; ?></h1>
 
 
             <!-- タスク名 -->
@@ -196,7 +192,7 @@ require('head.php');
 
 
             <div class="btn-container">
-              <input type="submit" class="btn btn-mid" value="<?php echo (!$edit_flg) ? '登録する' : '変更する'; ?>">
+              <input type="submit" class="btn btn-mid" value="登録する">
             </div>
 
 
