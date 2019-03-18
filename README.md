@@ -32,3 +32,11 @@ git、github、ターミナルに関してはテック系のYoutuberさんやUde
 タスク管理アプリ<br>
 
 https://youtu.be/50CdiiVLKvo
+
+
+# アプリURL
+アプリURL<br>
+ https://taskmanagement1900.herokuapp.com/ <br>
+ 
+ ローカルでDB接続パスワードは管理しておりますが、このアプリに登録するメールアドレス、パスワードは他のサービスに使用しているものとは違うものを登録してください。
+ 捨てメアドなどでも構いません。
